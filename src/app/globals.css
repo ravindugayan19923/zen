@@ -1,0 +1,112 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 17, 24, 39;
+  --background-start-rgb: 255, 255, 255;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 17, 24, 39;
+    --background-start-rgb: 255, 255, 255;
+    --background-end-rgb: 255, 255, 255;
+
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+  scroll-behavior: smooth;
+}
+
+@layer utilities {
+}
+body::-webkit-scrollbar {
+  display: none;
+}
+
+.gradient-border {
+  border-style: solid;
+  border-image-slice: 1;
+  border-width: 2px; /* Adjust the width as desired */
+  border-image-source: linear-gradient(to right, #f3ec78, #af4261);
+}
+
+@keyframes moveDown {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(20px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.animate-moveDown {
+  animation: moveDown 1s ease-in-out;
+}
+
+.embla {
+  overflow: hidden;
+  position: relative;
+}
+
+.embla__container {
+  display: flex;
+  gap: 1rem;
+  transition: transform 0.3s ease;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  background-color: red; /* Add margin at the top */
+}
+
+.embla__slide {
+  flex: 0 0 100%;
+}
+
+@keyframes slideIn {
+  0% {
+    margin-top: 0;
+    background-image: none;
+  }
+  100% {
+    margin-top: 3vw;
+    background-image: linear-gradient(to top right, #8B5CF6, #FF7A96);
+  }
+}
+
+.gradient-animation-show {
+  background-image: linear-gradient(to top right, #8B5CF6, #FF7A96);
+  position: absolute;
+  margin-top: 0;
+  animation: slideIn 1s ease both;
+}
+
+@keyframes slideOut {
+  0% {
+    margin-top: 3vw;
+    background-image: linear-gradient(to top right, #8B5CF6, #FF7A96);
+  }
+  100% {
+    margin-top: 0;
+  }
+}
+
+.gradient-animation-hide {
+  animation: slideOut 1s ease both;
+}
+
+html {
+  scroll-behavior: smooth;
+}
